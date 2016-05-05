@@ -1,0 +1,58 @@
+html, body {
+	margin: 0;
+	height: 100%;
+	width: 100%;
+	background: #222;
+}
+
+.image {
+	display: inline-block;
+	height: 33%;
+	width: 25%;
+	background-size: cover;
+	background-position: center;
+	transition: 0.2s;
+	cursor: pointer;
+}
+
+.image:hover {
+	-webkit-transform: scale(1.05);
+	transform: scale(1.05);
+	box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+}
+
+#images {
+	height: 100%;
+	width: 100%;
+	line-height: 0;
+}
+
+#image_viewer {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background-color: rgba(0, 0, 0, 0.9);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-image: url('./images/IMG_1641.jpg');
+	transition: 0.5s;
+	opacity: 1;
+	z-index: 1000;
+}
+
+.transparent {
+	opacity: 0 !important;
+}
+
+.hidden {
+	display: none !important;
+}
+
+@media screen and (max-width: 1000px) {
+	.image {
+		width: 50%;
+	}
+}
