@@ -3,6 +3,8 @@ html, body {
 	height: 100%;
 	width: 100%;
 	background: #222;
+    font-family: sans-serif;
+    font-weight: 100;
 }
 
 .image {
@@ -33,14 +35,44 @@ html, body {
 	left: 0;
 	height: 100%;
 	width: 100%;
-	background-color: rgba(0, 0, 0, 0.9);
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: contain;
-	background-image: url('./images/IMG_1641.jpg');
+    background: rgba(0, 0, 0, 0.9) no-repeat center;
+    background-size: contain;
 	transition: 0.5s;
 	opacity: 1;
 	z-index: 1000;
+}
+
+#upload_prompt {
+	width: 100%;
+	color: #fff;
+    text-align: center;
+    font-size: 20px;
+    padding-top: 10px;
+}
+
+#upload_button {
+    font-size: 30px;
+    padding: 20px;
+    color: rgba(0, 0, 0, 0.4);
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+#upload_window {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background: #ccc;
+    left: 0;
+    top: 100%;
+    transition: 0.5s;
+}
+
+#close_upload_window {
+    width: 100%;
+    height: 30px;
+    background-color: #aaa;
+    cursor: pointer;
 }
 
 .transparent {

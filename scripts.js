@@ -6,8 +6,21 @@ window.onload = function() {
         }, 500);
     });
 
+    select("id", "upload_button").js_object.setAttribute("style", "background-color: rgb("
+        + Math.floor(180 + Math.random() * 55) + ", "
+        + Math.floor(180 + Math.random() * 55) + ", "
+        + Math.floor(180 + Math.random() * 55) + ");");
+
+    select("id", "upload_button").js_object.addEventListener("click", function() {
+        select("id", "upload_window").js_object.setAttribute("style", "transform: translateY(-100%);")
+    });
+
+    select("id", "close_upload_window").js_object.addEventListener("click", function() {
+        select("id", "upload_window").js_object.setAttribute("style", "transform: translateY(0);");
+    });
+
     send_request({
-        url: "get_images.php",
+        url: "./utilities/get_images.php",
         callback: function(images) {
             for (var i = 0; i < images.length; i++) {
                 if (images[i][0] != ".") {
@@ -17,7 +30,8 @@ window.onload = function() {
                     new_image.setAttribute("image", images[i]);
 
                     new_image.addEventListener("click", function(e) {
-                        select("id", "image_viewer").js_object.setAttribute("style", "background-image: url('./images/" + e.target.getAttribute("image") + "');");
+                        select("id", "image_viewer").js_object.setAttribute("style", "background-image: url('./images/"
+                            + e.target.getAttribute("image") + "');");
                         select("id", "image_viewer").remove_class("hidden");
                         setTimeout(function() {
                             select("id", "image_viewer").remove_class("transparent");
@@ -29,8 +43,7 @@ window.onload = function() {
             }
         }
     })
-}
-
+};
 
 function send_request(args) {
     args.url = (args.url == undefined) ? "" : args.url;
@@ -74,7 +87,7 @@ function send_request(args) {
 function select(method, selector) {
     if (method == "id") {
         var js_object = document.getElementById(selector);
-        return js_object == undefined ? undefined : ƪ(js_object);
+        return js_object == undefined ? undefined : DOM_Object(js_object);
     }
 
     if (method == "class") {
@@ -82,14 +95,14 @@ function select(method, selector) {
         var js_objects = document.getElementsByClassName(selector);
 
         for (var i = 0; i < js_objects.length; i++) {
-            elements.push(new ƪ(js_objects[i]));
+            elements.push(new DOM_Object(js_objects[i]));
         }
 
         return elements;
     }
 }
 
-function ƪ(js_object) {
+function DOM_Object(js_object) {
     this.js_object = js_object;
     this.classes = this.js_object.className == undefined ? [] : this.js_object.className.split(" ");
 
