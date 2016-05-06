@@ -13,9 +13,15 @@
 		</div>
 		<div id="images"></div>
 		<div id="upload_window">
-            <div id="close_upload_window"></div>
-            <input type="file" id="photo_select_assistant"/>
+            <input type="file" id="photo_select_assistant" class="hidden"/>
+            <div id="no_image_message">
+                Please select an image.
+            </div>
+            <div id="selected_image_container" class="transparent">
+                <div id="selected_image"></div>
+            </div>
 
+            <div id="close_upload_window"></div>
             <div id="photo_select">select</div>
             <div id="photo_upload">upload</div>
             <div id="photo_upload_progress" class="hidden transparent">

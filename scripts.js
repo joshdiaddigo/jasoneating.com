@@ -24,6 +24,17 @@ window.onload = function() {
         select("id", "photo_select_assistant").js_object.click();
     });
 
+    select("id", "photo_select_assistant").js_object.addEventListener("change", function() {
+        var reader = new FileReader();
+        reader.readAsDataURL(select("id", "photo_select_assistant").js_object.files[0]);
+
+        reader.onload = function(e) {
+            select("id", "selected_image").js_object.setAttribute("style",
+                "background-image: url(" + e.target.result + ");");
+            select("id", "selected_image_container").remove_class("transparent");
+        };
+    });
+
     select("id", "photo_upload").js_object.addEventListener("click", upload_image);
 
     send_request({

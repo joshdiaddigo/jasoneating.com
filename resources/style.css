@@ -123,6 +123,33 @@ html, body {
     box-sizing: border-box;
 }
 
+#selected_image_container {
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 50px 30px 180px;
+    transition: 0.5s;
+}
+
+#selected_image {
+    width: 100%;
+    height: 100%;
+    background: no-repeat center;
+    background-size: cover;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+#no_image_message {
+    position: absolute;
+    top: 40%;
+    width: 100%;
+    text-align: center;
+    color: #777;
+}
+
 .transparent {
 	opacity: 0 !important;
 }
