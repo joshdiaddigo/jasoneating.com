@@ -1,3 +1,5 @@
 *.idea*
 *auth.php
 utilities/auth.php
+
+lib/cacert.pem
