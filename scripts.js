@@ -86,6 +86,7 @@ function upload_image() {
                 alert(response.error, "Error");
             } else {
                 alert(response.response, "Success!");
+                select("id", "upload_window").js_object.setAttribute("style", "transform: translateY(0);");
             }
         }
 
