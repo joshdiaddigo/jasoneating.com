@@ -12,12 +12,19 @@ window.onload = function() {
         + Math.floor(180 + Math.random() * 55) + ");");
 
     select("id", "upload_button").js_object.addEventListener("click", function() {
-        select("id", "upload_window").js_object.setAttribute("style", "transform: translateY(-100%);")
+        select("id", "upload_window").js_object.setAttribute("style", "transform: translateY(-100%);");
+        select("id", "photo_select_assistant").js_object.click();
     });
 
     select("id", "close_upload_window").js_object.addEventListener("click", function() {
         select("id", "upload_window").js_object.setAttribute("style", "transform: translateY(0);");
     });
+
+    select("id", "photo_select").js_object.addEventListener("click", function() {
+        select("id", "photo_select_assistant").js_object.click();
+    });
+
+    select("id", "photo_upload").js_object.addEventListener("click", upload_image);
 
     send_request({
         url: "./utilities/get_images.php",
@@ -44,6 +51,50 @@ window.onload = function() {
         }
     })
 };
+
+function upload_image() {
+    var file = select("id", "photo_select_assistant").js_object.files[0];
+
+    if (file == undefined) {
+        console.log("Please select a photo first!");
+        return;
+    }
+
+    select("id", "photo_upload_progress").remove_class("hidden");
+    setTimeout(function() {
+        select("id", "photo_upload_progress").remove_class("transparent")
+    }, 10);
+
+    var request = new XMLHttpRequest();
+    request.onloadend = function() {
+        if (request.status != 200) {
+            console.log("There seems to be a problem :(");
+        } else {
+            var response = JSON.parse(request.responseText);
+            if (response.error != undefined) {
+                console.log(response.error);
+            } else {
+                console.log(response.response);
+            }
+        }
+
+        select("id", "photo_upload_progress").add_class("transparent");
+        setTimeout(function() {
+            select("id", "photo_upload_progress").add_class("hidden");
+            select("id", "photo_upload_progress_inner").js_object.setAttribute("style", "width: 0");
+        }, 500);
+    };
+
+    request.upload.addEventListener("progress", function() {
+        var percent = (event["loaded"] / event["total"] * 100);
+        select("id", "photo_upload_progress_inner").js_object.setAttribute("style", "width: " + percent + "%");
+    }, false);
+
+    request.open("POST", "utilities/upload_image.php", true);
+    request.setRequestHeader("X-File-Name", file.name);
+    request.setRequestHeader("Content-Type", "application/octet-stream");
+    request.send(file);
+}
 
 function send_request(args) {
     args.url = (args.url == undefined) ? "" : args.url;

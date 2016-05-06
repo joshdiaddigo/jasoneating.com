@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 	<head>
-		<link href="style.css" rel="stylesheet" type="text/css">
+		<link href="resources/style.css" rel="stylesheet" type="text/css">
 		<script src="scripts.js"></script>
         <meta media="screen and (max-width: 640px)"
               name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -14,7 +14,13 @@
 		<div id="images"></div>
 		<div id="upload_window">
             <div id="close_upload_window"></div>
-            <input type="file" id="photo_select"/>
+            <input type="file" id="photo_select_assistant"/>
+
+            <div id="photo_select">select</div>
+            <div id="photo_upload">upload</div>
+            <div id="photo_upload_progress" class="hidden transparent">
+                <div id="photo_upload_progress_inner"></div>
+            </div>
         </div>
 	</body>
 </html>
