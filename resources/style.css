@@ -150,12 +150,75 @@ html, body {
     color: #777;
 }
 
+#alert_container {
+    height: 100%;
+    width: 100%;
+    background: rgba(30, 30, 30, 0.7);
+    top: 0;
+    left: 0;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-transition: opacity 0.5s;
+    -moz-transition: opacity 0.5s;
+    -ms-transition: opacity 0.5s;
+    -o-transition: opacity 0.5s;
+    transition: opacity 0.5s;
+    z-index: 1000;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#alert_window {
+    padding: 20px;
+    width: 100%;
+    max-width: 500px;
+    background: #E6E3E1;
+}
+
+#alert_title {
+    color: #2B415D;
+    font-weight: 800;
+}
+
+#alert_message {
+    margin-top: 10px;
+    margin-bottom: 15px;
+    color: #666;
+    overflow-x: scroll;
+}
+
+#alert_buttons {
+    text-align: right;
+}
+
+.alert_button {
+    cursor: pointer;
+    padding-left: 10px;
+    color: #333;
+
+    -webkit-transition: color 0.5s;
+    -moz-transition: color 0.5s;
+    -ms-transition: color 0.5s;
+    -o-transition: color 0.5s;
+    transition: color 0.5s;
+}
+
+.alert_button:hover {
+    color: #E37954;
+}
+
 .transparent {
 	opacity: 0 !important;
 }
 
 .hidden {
 	display: none !important;
+}
+
+.blurred {
+    filter: blur(10px);
 }
 
 @media screen and (max-width: 1000px) {

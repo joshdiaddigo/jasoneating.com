@@ -67,7 +67,7 @@ function upload_image() {
     var file = select("id", "photo_select_assistant").js_object.files[0];
 
     if (file == undefined) {
-        console.log("Please select a photo first!");
+        alert("Please select a photo first!", "Oops!");
         return;
     }
 
@@ -79,13 +79,13 @@ function upload_image() {
     var request = new XMLHttpRequest();
     request.onloadend = function() {
         if (request.status != 200) {
-            console.log("There seems to be a problem :(");
+            alert("There seems to be a problem with the server right now :(", "Oops!");
         } else {
             var response = JSON.parse(request.responseText);
             if (response.error != undefined) {
-                console.log(response.error);
+                alert(response.error, "Error");
             } else {
-                console.log(response.response);
+                alert(response.response, "Success!");
             }
         }
 
@@ -182,4 +182,59 @@ function DOM_Object(js_object) {
         this.js_object.className = this.classes.join(" ");
     };
     return this;
+}
+
+function alert(message, title, args) {
+    args = (args == null) ? {} : args;
+    message = (message == null) ? "" : message;
+    title = (title == null) ? "" : title;
+
+    var button_text = args.button_text;
+    var show_cancel = args.show_cancel;
+    var button_callback = args.button_callback;
+    var cancel_callback = args.cancel_callback;
+    var cancel_button_text = args.cancel_button_text;
+
+    button_text = (button_text == undefined) ? "ok" : button_text;
+    button_callback = (button_callback == undefined) ? function() {close_alert()} : button_callback;
+    cancel_callback = (cancel_callback == undefined) ? function() {close_alert()} : cancel_callback;
+    show_cancel = (show_cancel == undefined) ? false : show_cancel;
+    cancel_button_text = (cancel_button_text == undefined) ? "cancel" : cancel_button_text;
+
+    document.activeElement.blur();
+
+    select("id", "alert_message").js_object.innerHTML = message;
+    select("id", "alert_title").js_object.innerHTML = title;
+    select("id", "alert_button").js_object.innerHTML = button_text;
+    select("id", "alert_cancel").js_object.innerHTML = cancel_button_text;
+    if (show_cancel) {
+        select("id", "alert_cancel").remove_class("hidden");
+    } else {
+        select("id", "alert_cancel").add_class("hidden");
+    }
+
+    select("id", "alert_container").remove_class("hidden");
+    setTimeout(function() {
+        select("id", "alert_container").remove_class("transparent");
+    }, 10);
+
+    select("id", "alert_button").js_object.onclick = button_callback;
+    select("id", "alert_cancel").js_object.onclick = cancel_callback;
+
+    select("id", "image_viewer").add_class("blurred");
+    select("id", "upload_window").add_class("blurred");
+    select("id", "upload_prompt").add_class("blurred");
+    select("id", "images").add_class("blurred");
+}
+
+function close_alert() {
+    select("id", "alert_container").add_class("transparent");
+    setTimeout(function() {
+        select("id", "alert_container").add_class("hidden");
+    }, 500);
+
+    select("id", "image_viewer").remove_class("blurred");
+    select("id", "upload_window").remove_class("blurred");
+    select("id", "upload_prompt").remove_class("blurred");
+    select("id", "images").remove_class("blurred");
 }
