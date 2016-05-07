@@ -19,7 +19,7 @@ $client = new Services_Twilio($TWILIO_ACCOUNT_SID, $TWILIO_AUTH_TOKEN);
 $textMessage = $client->account->messages->create(array(
     "From" => "770-691-2047",
     "To" => "770-377-4047",
-    "MediaUrl" => "http://jasoneating.com/beta/uploaded_images/".$image_url,
+    "MediaUrl" => "http://jasoneating.com/uploaded_images/".$image_url,
     "Body" => $image_url,
 ));
 
