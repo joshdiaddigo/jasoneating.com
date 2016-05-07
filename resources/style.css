@@ -19,8 +19,8 @@ html, body {
 
 .image:hover {
 	-webkit-transform: scale(1.05);
-	transform: scale(1.05);
-	box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+	transform: scale(1.05) translateZ(1px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
 }
 
 #images {
@@ -64,7 +64,7 @@ html, body {
     width: 100%;
     background: #ccc;
     left: 0;
-    top: 100%;
+    top: 150%;
     transition: 0.5s;
 }
 

@@ -12,7 +12,7 @@ window.onload = function() {
         + Math.floor(180 + Math.random() * 55) + ");");
 
     select("id", "upload_button").js_object.addEventListener("click", function() {
-        select("id", "upload_window").js_object.setAttribute("style", "transform: translateY(-100%);");
+        select("id", "upload_window").js_object.setAttribute("style", "transform: translateY(-150%);");
         select("id", "photo_select_assistant").js_object.click();
     });
 
