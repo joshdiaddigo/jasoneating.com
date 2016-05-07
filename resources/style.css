@@ -40,6 +40,8 @@ html, body {
 	transition: 0.5s;
 	opacity: 1;
 	z-index: 1000;
+    transform: translateZ(2px);
+    -webkit-transform: translateZ(2px);
 }
 
 #upload_prompt {
