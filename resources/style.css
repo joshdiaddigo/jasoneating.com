@@ -142,7 +142,8 @@ html, body {
     height: 100%;
     background: no-repeat center;
     background-size: cover;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    border: 10px solid #efe;
+    box-sizing: border-box;
 }
 
 #no_image_message {
