@@ -24,7 +24,7 @@ $textMessage = $client->account->messages->create(array(
 ));
 
 $response = array(
-    "response" => "Success! Your image is awaiting moderation."
+    "response" => "Your image is awaiting moderation."
 );
 echo json_encode($response);
 
